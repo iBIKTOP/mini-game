@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.block {
+  width: 30px;
+  height: 30px;
+  margin: 2px;
+  cursor: pointer;
+}
