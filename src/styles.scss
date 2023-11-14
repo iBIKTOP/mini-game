@@ -1,4 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+
+html, body { height: 100vh; }
 body {
-    background: lightgray;
+  margin: 0;
+  font-family: 'Caprasimo', cursive;
+  background: radial-gradient(
+      circle at top,
+      rgba(241, 210, 70, 0.98) 0%,
+      rgba(250, 176, 103, 0.87) 100%
+  );
 }

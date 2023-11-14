@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { GameBlock } from '../../interfaces/gameBlock';
+import { GameBlock } from '../../models/game.models';
 import { GameBoardService } from '../../services/game-board.service';
 import { Observable } from 'rxjs';
 

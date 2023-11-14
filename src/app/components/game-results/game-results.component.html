@@ -1,4 +1,16 @@
-<div>
-  <p>{{ playerName }}: {{ playerScore }}</p>
-  <p>{{ computerName }}: {{ computerScore }}</p>
-</div>
+<ng-container *ngIf="gameData | async as gameData">
+  <div class="result-container">
+    <div class="result-item">{{ playerName }} : <span class="score">{{ gameData.playerScore }}</span></div>
+    <div class="result-item">
+      <button
+        (click)="startGame()"
+        [disabled]="gameData.gameActive"
+        mat-fab
+        color="warn"
+      >
+        GO
+      </button>
+    </div>
+    <div class="result-item"><span class="score">{{ gameData.computerScore }}</span> : {{ computerName }}</div>
+  </div>
+</ng-container>

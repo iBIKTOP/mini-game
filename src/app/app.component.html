@@ -1,7 +1,8 @@
-<ng-container *ngIf="gameData | async as gameData">
-  <div>
-    <button (click)="startGame()" [disabled]="gameData.gameActive">Start</button>
-  </div>
-  <app-game-results [playerScore]="gameData.playerScore" [computerScore]="gameData.computerScore"></app-game-results>
+<app-game-name>
+  {{ title }}
+</app-game-name>
+<app-game-container>
+  <app-game-results />
   <app-game-board />
-</ng-container>
+</app-game-container>
+

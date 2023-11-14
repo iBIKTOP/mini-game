@@ -1,15 +1,22 @@
 import { Injectable } from '@angular/core';
-import { GameBlock, GameData } from '../interfaces/gameBlock';
+import {
+  COLS_COUNT,
+  GameBlock,
+  GameData,
+  INITIAL_GAME_BLOCK,
+  INITIAL_GAME_DATA,
+  ROWS_COUNT
+} from '../models/game.models';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameBoardService {
-  private boardRowsCount: number = 10;
-  private boardColsCount: number = 10;
-  private initialGameBlock: GameBlock = { color: 'blue' };
-  private initialGameData: GameData = { playerScore: 0, computerScore: 0, gameActive: false };
+  private boardRowsCount: number = ROWS_COUNT;
+  private boardColsCount: number = COLS_COUNT;
+  private initialGameBlock: GameBlock = INITIAL_GAME_BLOCK;
+  private initialGameData: GameData = INITIAL_GAME_DATA;
   private timer!: number;
   gameTime: number = 2000;
 

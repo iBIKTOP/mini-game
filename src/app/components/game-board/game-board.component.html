@@ -1,11 +1,13 @@
-<div
-  *ngFor="let row of gameBoard | async; let i = index"
-  class="container"
->
-  <div
-    *ngFor="let cell of row; let j = index"
-    class="block"
-    (click)="clickBlock(i, j)"
-    [ngStyle]="{'background-color': cell.color}"
-  ></div>
+<div class="game-container">
+  <div class="game-board">
+    <div *ngFor="let row of gameBoard | async; let i = index">
+      <div
+        *ngFor="let cell of row; let j = index"
+        class="block"
+        (click)="clickBlock(i, j)"
+        [ngStyle]="{'background-color': cell.color}"
+      ></div>
+    </div>
+  </div>
 </div>
+
