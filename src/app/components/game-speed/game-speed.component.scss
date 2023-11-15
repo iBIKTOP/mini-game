@@ -1,0 +1,39 @@
+@import '../../scss/game';
+
+.game-speed-container {
+  text-align: center;
+
+  .game-speed-content {
+    height: 30px;
+    font-size: 20px;
+    font-family: $game-font-family;
+    color: $board-gradient-bg-color-start;
+  }
+
+  .game-speed-input {
+    font-size: 20px;
+    width: 80px;
+    border: 1px solid $board-gradient-bg-color-start;
+    background: $body-gradient-bg-color-start;
+  }
+
+  .game-speed-input.has-error {
+    background: lightcoral;
+  }
+
+  .game-speed-icon {
+    position: relative;
+    top: 5px;
+    left: 10px;
+    cursor: pointer;
+  }
+
+  .game-speed-icon.disable {
+    cursor: not-allowed;
+    color: lightgray;
+  }
+
+  .game-speed-form {
+    display: inline-block;
+  }
+}

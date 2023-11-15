@@ -1,7 +1,9 @@
+@import '../../scss/game';
+
 .game-name {
-  font-family: 'Caprasimo', cursive;
+  font-family: $game-font-family;
   font-size: 3rem;
   padding: 40px;
-  color: #3f3b00;
+  color: $board-gradient-bg-color-start;
   text-align: center;
 }

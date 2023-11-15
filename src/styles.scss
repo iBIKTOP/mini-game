@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+@import 'app/scss/game';
 
 html, body { height: 100vh; }
 body {
@@ -6,7 +7,7 @@ body {
   font-family: 'Caprasimo', cursive;
   background: radial-gradient(
       circle at top,
-      rgba(241, 210, 70, 0.98) 0%,
-      rgba(250, 176, 103, 0.87) 100%
+      $body-gradient-bg-color-start,
+      $body-gradient-bg-color-end
   );
 }

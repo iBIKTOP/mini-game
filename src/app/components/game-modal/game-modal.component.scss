@@ -1,0 +1,28 @@
+@import '../../scss/game';
+
+.game-over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $container-bg-color;
+  color: $text-color;
+  text-align: center;
+
+  h2 {
+    font-family: $game-font-family;
+    font-size: 70px;
+    margin: 30px 0;
+  }
+
+  p {
+    font-family: $game-font-family;
+    font-size: 40px;
+    margin: 30px 0 50px 0;
+  }
+}

@@ -1,0 +1,29 @@
+@import '../../../scss/game';
+
+.game-button {
+  display: block;
+  margin: 0 auto;
+  font-size: 1.5rem;
+  background: none;
+  border: 2px solid $text-color;
+  color: $text-color;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s, color 0.2s;
+  box-shadow: 0 0 8px rgba(255, 187, 0, 0.4);
+
+  &:not(:disabled):hover {
+    background: $btn-color-hover;
+    color: $text-color-hover;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 187, 0, 0.8);
+  }
+
+  &:disabled {
+    background: $btn-color-disabled;
+    border: 2px solid $btn-color-disabled;
+    cursor: not-allowed;
+  }
+}
+

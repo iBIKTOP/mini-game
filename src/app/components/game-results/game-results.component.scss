@@ -1,11 +1,13 @@
+@import '../../scss/game';
+
 .result-container {
   display: flex;
   justify-content: center;
   row-gap: 50px;
   flex-wrap: wrap;
   align-items: center;
-  color: #eeda75;
-  font-family: 'Caprasimo', cursive;
+  color: $text-color;
+  font-family: $game-font-family;
   font-size: 20px;
 
   .result-item {
@@ -24,27 +26,6 @@
     .score {
       font-size: 50px;
       margin: 0 10px;
-    }
-  }
-
-  button {
-    margin-bottom: 20px;
-    border-color: #f44336;
-    animation: pulse 3s infinite ease-out;
-  }
-
-  @keyframes pulse {
-    0% {
-      border-color: #72201a;
-      box-shadow: 0 0 0 0 rgb(238, 218, 117);
-    }
-    50% {
-      border-color: #260a0a;
-      box-shadow: 0 0 0 0.5rem rgba(238, 218, 117, 0);
-    }
-    100% {
-      border-color: #72201a;
-      box-shadow: 0 0 0 0 rgba(238, 218, 117, 0);
     }
   }
 }

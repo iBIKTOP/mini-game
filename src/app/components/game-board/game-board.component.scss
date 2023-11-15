@@ -1,3 +1,5 @@
+@import "../../scss/game";
+
 .game-board {
   display: flex;
   justify-content: center;
@@ -9,7 +11,7 @@
     width: 30px;
     height: 30px;
     border-radius: 6px;
-    background: #0721a0;
+    background: $block-color;
     cursor: pointer;
     padding: 10px;
     margin: 10px 5px;
