@@ -7,6 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { CustomValidators } from '../../validators/castom-validators';
+import { GameState } from '../../models/game.models';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-game-speed',
@@ -14,7 +16,7 @@ import { CustomValidators } from '../../validators/castom-validators';
   styleUrls: ['./game-speed.component.scss'],
 })
 export class GameSpeedComponent implements OnInit {
-  isEditing: boolean = false;
+  gameState!: BehaviorSubject<GameState>;
   gameSpeed!: number;
   speedForm!: FormGroup;
   constructor(
@@ -23,7 +25,36 @@ export class GameSpeedComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.gameState = this.gameBoardService.gameState;
     this.gameSpeed = this.gameBoardService.gameSpeed;
+    this.initForm();
+  }
+
+  toggleIsEditing(): void {
+    if (this.gameBoardService.gameState.value.isGameActive) {
+      return;
+    }
+
+    if (this.gameBoardService.gameState.value.isSpeedEditing) {
+      this.gameBoardService.gameSpeed = this.gameSpeed;
+    }
+
+    this.gameBoardService.toggleIsEditing();
+  }
+
+  setNewSpeed(event: Event): void {
+    this.gameSpeed = +(event.target as HTMLInputElement).value;
+  }
+
+  inputHasErrors(): boolean {
+    return (this.speed.touched || this.speed.dirty) && !!this.speed.errors;
+  }
+
+  get speed(): AbstractControl {
+    return this.speedForm.get('speed')!;
+  }
+
+  private initForm(): void {
     this.speedForm = this.fb.group({
       speed: [
         this.gameSpeed,
@@ -33,18 +64,5 @@ export class GameSpeedComponent implements OnInit {
         ],
       ],
     });
-  }
-
-  toggleIsEditing(): void {
-    this.isEditing = !this.isEditing;
-  }
-
-  setNewSpeed(event: Event): void {
-    this.gameSpeed = +(event.target as HTMLInputElement).value;
-    this.gameBoardService.gameSpeed = this.gameSpeed;
-  }
-
-  get speed(): AbstractControl {
-    return this.speedForm.get('speed')!;
   }
 }

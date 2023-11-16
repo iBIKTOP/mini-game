@@ -1,21 +1,23 @@
+<ng-container *ngIf="gameState | async as gameState">
 <div class="game-speed-container">
   <div class="game-speed-content">
     <div>Game speed:</div>
-    <span *ngIf="!isEditing">{{gameSpeed}}ms.</span>
-    <form *ngIf="isEditing" [formGroup]="speedForm" class="game-speed-form">
+    <span *ngIf="!gameState.isSpeedEditing">{{gameSpeed}}ms.</span>
+    <form *ngIf="gameState.isSpeedEditing" [formGroup]="speedForm" class="game-speed-form">
       <input
         class="game-speed-content game-speed-input"
         type="number"
         (input)="setNewSpeed($event)"
+        [value]="gameSpeed"
         formControlName="speed"
-        [ngClass]="{'has-error': (speed.touched || speed.dirty) && speed.errors}"
+        [ngClass]="{'has-error': inputHasErrors()}"
       />
     </form>
     <span
       class="material-symbols-outlined game-speed-icon"
       (click)="toggleIsEditing()"
-      [ngClass]="{'disable': (speed.touched || speed.dirty) && speed.errors}"
-    >{{!isEditing ? 'edit' : 'done'}}</span>
+      [ngClass]="{'disable': inputHasErrors() || gameState.isGameActive}"
+    >{{!gameState.isSpeedEditing ? 'edit' : 'done'}}</span>
   </div>
-
 </div>
+</ng-container>

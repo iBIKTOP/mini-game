@@ -1,28 +1,34 @@
-export const GAME_NAME: string = 'MINI GAME';
-export const PLAYER_NAME: string = 'Player';
-export const COMPUTER_NAME: string = 'Computer';
-export const ROWS_COUNT: number = 10;
-export const COLS_COUNT: number = 10;
-export const INITIAL_GAME_TIME: number = 2000;
-
-export const BLOCK_COLOR_BLUE: string = 'blue';
-export const BLOCK_COLOR_YELLOW: string = 'yellow';
-export const BLOCK_COLOR_RED: string = 'red';
-export const BLOCK_COLOR_GREEN: string = 'green';
-
-export const INITIAL_GAME_BLOCK: GameBlock = { color: BLOCK_COLOR_BLUE };
-export const INITIAL_GAME_DATA: GameData = {
-  playerScore: 0,
-  computerScore: 0,
-  gameActive: false,
-};
-
-export interface GameBlock {
-  color: string;
+export enum InitialGameConfig {
+  GameName = 'MINI GAME',
+  PlayerName = 'Player',
+  ComputerName = 'Computer',
+  CountBoardRows = 10,
+  CountBoardCols = 10,
+  Speed = 1000,
 }
 
-export interface GameData {
+export const INITIAL_GAME_STATE: GameState = {
+  playerScore: 0,
+  computerScore: 0,
+  isGameActive: false,
+  isSpeedEditing: false,
+};
+
+export enum BlockState {
+  InitialState = 'blue',
+  TemporaryState = 'yellow',
+  PlayerState = 'green',
+  ComputerState = 'red',
+}
+
+export interface GameBlock {
+  id: number;
+  state: string;
+}
+
+export interface GameState {
   playerScore: number;
   computerScore: number;
-  gameActive: boolean;
+  isGameActive: boolean;
+  isSpeedEditing: boolean;
 }

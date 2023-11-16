@@ -9,11 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { GameNameComponent } from './components/game-name/game-name.component';
-import { GameContainerComponent } from './components/game-container/game-container.component';
 import { GameModalComponent } from './components/game-modal/game-modal.component';
 import { GameButtonComponent } from './components/UI/game-button/game-button.component';
 import { GameSpeedComponent } from './components/game-speed/game-speed.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GameBlockComponent } from './components/game-block/game-block.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +21,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     GameBoardComponent,
     GameResultsComponent,
     GameNameComponent,
-    GameContainerComponent,
     GameModalComponent,
     GameButtonComponent,
     GameSpeedComponent,
+    GameBlockComponent,
   ],
   imports: [
     BrowserModule,

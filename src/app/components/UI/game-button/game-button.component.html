@@ -1,3 +1,7 @@
-<button class="game-button" [disabled]="isDisabled">
+<button
+  class="game-button"
+  [disabled]="isDisabled"
+  (click)="clickHandler()"
+>
   <ng-content />
 </button>

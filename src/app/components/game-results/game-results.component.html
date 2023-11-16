@@ -1,12 +1,12 @@
-<ng-container *ngIf="gameData | async as gameData">
+<ng-container *ngIf="gameState | async as gameState">
   <div class="result-container">
-    <div class="result-item">{{ playerName }} : <span class="score">{{ gameData.playerScore }}</span></div>
+    <div class="result-item">{{ playerName }} : <span class="score">{{ gameState.playerScore }}</span></div>
     <div class="result-item">
       <app-game-button
-        (click)="startGame()"
-        [isDisabled]="gameData.gameActive"
+        (onClick)="startGame()"
+        [isDisabled]="gameState.isGameActive || gameState.isSpeedEditing"
       >START</app-game-button>
     </div>
-    <div class="result-item"><span class="score">{{ gameData.computerScore }}</span> : {{ computerName }}</div>
+    <div class="result-item"><span class="score">{{ gameState.computerScore }}</span> : {{ computerName }}</div>
   </div>
 </ng-container>

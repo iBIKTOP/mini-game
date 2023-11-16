@@ -1,24 +1,30 @@
 import { Component } from '@angular/core';
 import { GameBoardService } from '../../services/game-board.service';
 import { Observable } from 'rxjs';
-import { COMPUTER_NAME, GameData, PLAYER_NAME } from '../../models/game.models';
+import { GameState, InitialGameConfig } from '../../models/game.models';
 
 @Component({
   selector: 'app-game-results',
   templateUrl: './game-results.component.html',
-  styleUrls: ['./game-results.component.scss']
+  styleUrls: ['./game-results.component.scss'],
 })
 export class GameResultsComponent {
-  gameData!: Observable<GameData>;
+  gameState!: Observable<GameState>;
 
-  playerName: string = PLAYER_NAME;
-  computerName: string = COMPUTER_NAME;
+  playerName: string = InitialGameConfig.PlayerName;
+  computerName: string = InitialGameConfig.ComputerName;
 
   constructor(private gameBoardService: GameBoardService) {
-    this.gameData = this.gameBoardService.gameData;
+    this.gameState = this.gameBoardService.gameState;
   }
 
   startGame(): void {
+    if (
+      this.gameBoardService.gameState.value.isSpeedEditing ||
+      this.gameBoardService.gameState.value.isGameActive
+    ) {
+      return;
+    }
     this.gameBoardService.startGame();
   }
 }
