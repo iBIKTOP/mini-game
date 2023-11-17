@@ -21,18 +21,17 @@ export class GameBoardService {
   gameState: BehaviorSubject<GameState> = new BehaviorSubject<GameState>(
     INITIAL_GAME_STATE,
   );
-  private timer!: number;
+  private timer!: number | undefined;
 
   constructor(private gameModalService: GameModalService) {}
 
   initNewGameBoard(): void {
-    let initialGameBoard: GameBlock[] = new Array(
-      InitialGameConfig.CountBoardRows * InitialGameConfig.CountBoardCols,
-    )
-      .fill({})
-      .map((_: object, index: number): GameBlock => {
-        return { id: index, state: BlockState.InitialState };
-      });
+    let initialGameBoard: GameBlock[] = [];
+    const blockCount: number =
+      InitialGameConfig.CountBoardRows * InitialGameConfig.CountBoardCols;
+    for (let i: number = 0; i < blockCount; i++) {
+      initialGameBoard.push({ id: i, state: BlockState.InitialState });
+    }
     this.gameBoard.next(initialGameBoard);
   }
 
@@ -46,8 +45,11 @@ export class GameBoardService {
 
   clickBlockHandler(id: number): void {
     const board: GameBlock[] = this.gameBoard.value;
-    if (board[id].state === BlockState.TemporaryState) {
-      board[id].state = BlockState.PlayerState;
+    const blockIndex: number = board.findIndex(
+      (block: GameBlock): boolean => block.id === id,
+    );
+    if (board[blockIndex].state === BlockState.TemporaryState) {
+      board[blockIndex].state = BlockState.PlayerState;
       this.gameBoard.next(board);
       this.gameState.next({
         ...this.gameState.value,
@@ -69,25 +71,25 @@ export class GameBoardService {
       clearTimeout(this.timer);
     }
     const board: GameBlock[] = this.gameBoard.value;
-    const randomId: number = Math.floor(
+    const randomIndex: number = Math.floor(
       Math.random() *
         (InitialGameConfig.CountBoardRows * InitialGameConfig.CountBoardCols),
     );
 
     if (
-      board[randomId].state === BlockState.ComputerState ||
-      board[randomId].state === BlockState.PlayerState
+      board[randomIndex].state === BlockState.ComputerState ||
+      board[randomIndex].state === BlockState.PlayerState
     ) {
       this.playRound();
       return;
     }
 
-    board[randomId].state = BlockState.TemporaryState;
+    board[randomIndex].state = BlockState.TemporaryState;
     this.gameBoard.next(board);
 
     this.timer = setTimeout((): void => {
       if (this.gameState.value.isGameActive) {
-        board[randomId].state = BlockState.ComputerState;
+        board[randomIndex].state = BlockState.ComputerState;
         this.gameBoard.next(board);
         this.gameState.next({
           ...this.gameState.value,
